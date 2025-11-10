@@ -2,6 +2,7 @@ const express=require('express');
 const cookieParser = require('cookie-parser');
 const connectDb = require('./config/db');
 const authRoutes = require('./routes/auth.routes');
+const bookRoutes = require('./routes/book.routes');
 const cors = require('cors');
 
 
@@ -24,6 +25,8 @@ app.use(
 );
 
 app.use('/api/auth',authRoutes);
+
+app.use('/api/books',bookRoutes);
 
 app.listen(PORT,()=>{
     connectDb();
