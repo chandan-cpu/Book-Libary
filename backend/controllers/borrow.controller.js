@@ -65,4 +65,22 @@ const returnBook = async (req, res) => {
     }
 }
 
-module.exports = { borrowBook, returnBook };
+const getBorrowedBooks = async (req, res) => {
+    try {
+        const userId = req.user.id; 
+        const user = await User.findById(userId);
+
+        const borrowedBooks = user.borrowedBooks.map((b) => ({
+            _id: b.bookId,
+            title: b.title,
+            borrowDate: b.borrowDate.toLocaleDateString(),
+        }));
+
+        res.status(200).json(borrowedBooks);
+    } catch (err) {
+        console.error("Error fetching borrowed books:", err);
+        res.status(500).json({ msg: "Server error" });
+    }
+};
+
+module.exports = { borrowBook, returnBook, getBorrowedBooks };

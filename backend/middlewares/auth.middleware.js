@@ -3,11 +3,11 @@ const dotenv = require('dotenv');
 dotenv.config();
 const authMiddleware = (req, res, next) => {
   try {
-    // Check for token in cookies first, then in Authorization header
+
     let token = req.cookies.token;
     
     if (!token && req.headers.authorization) {
-      // Extract token from "Bearer <token>" format
+      
       const authHeader = req.headers.authorization;
       if (authHeader.startsWith('Bearer ')) {
         token = authHeader.substring(7);
@@ -18,25 +18,18 @@ const authMiddleware = (req, res, next) => {
 
     if (!token) return res.status(401).json({ msg: 'No token, access denied' });
 
-    // Verify token
+
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     console.log('Decoded Token:', decoded);
-    req.user = decoded; // attach user info to request
+    req.user = decoded; 
 
-    next(); // move to next middleware/controller
+    next(); 
   } catch (error) {
     console.error('JWT Verify Error:', error);
     res.status(401).json({ msg: 'Invalid or expired token' });
   }
 };
 
-const rolesMiddleware = (...roles) => {
-    return (req, res, next) => {
-    if (!req.user || !roles.includes(req.user.role))
-      return res.status(403).json({ message: 'Access denied' });
-    next();
-  };
-};
 
 
-module.exports={authMiddleware, rolesMiddleware};
+module.exports={authMiddleware};

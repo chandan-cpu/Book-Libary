@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import api from "../../axios";
+import Toast from "../Toast";
 
 export default function LoginForm({ onAuthSuccess, setCurrentPage }) {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
   });
+  const [toast, setToast] = useState(null);
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -21,6 +23,7 @@ export default function LoginForm({ onAuthSuccess, setCurrentPage }) {
     
     try {
       const res = await api.post('/auth/login', formData);
+      setToast({ message: "Login Successful! Redirecting...", type: "success" });
       console.log(res.data);
       
       // Only store token in localStorage (user data comes from cookie/API)
@@ -34,7 +37,8 @@ export default function LoginForm({ onAuthSuccess, setCurrentPage }) {
          navigate("/app");
     } catch (error) {
       console.error("Login error:", error);
-      const msg = error?.response?.data?.msg || "Login failed. Please try again.";
+      setToast({ message: "Login failed. Please try again.", type: "error" });
+      // const msg = error?.response?.data?.msg || "Login failed. Please try again.";
       alert(msg);
     }
   };
@@ -121,6 +125,7 @@ export default function LoginForm({ onAuthSuccess, setCurrentPage }) {
           </div>
         </div>
       </div>
+      {toast && <Toast {...toast} onClose={() => setToast(null)} />}
     </div>
   );
 }

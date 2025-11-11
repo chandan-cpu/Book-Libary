@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Mail, Lock, Eye, EyeOff, User, Phone, UserCircle } from "lucide-react";
 import api from "../../axios";
 import { useNavigate } from "react-router-dom";
+import Toast from "../Toast";
 
 export default function SignupForm() {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ export default function SignupForm() {
   });
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [toast, setToast] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,9 +22,19 @@ export default function SignupForm() {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    const res=await api.post('/auth/register',formData)
-    alert(`Signup Successful!\n${JSON.stringify(formData, null, 2)}`);
-    navigate("/login");
+    try {
+      const res = await api.post('/auth/register', formData);
+      setToast({ message: "Signup Successful! Redirecting to login...", type: "success" });
+      
+      // Navigate after showing toast
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
+    } catch (error) {
+      console.error("Signup error:", error);
+      const msg = error?.response?.data?.msg || "Signup failed. Please try again.";
+      setToast({ message: msg, type: "error" });
+    }
   };
 
   return (
@@ -161,6 +173,9 @@ export default function SignupForm() {
           </div>
         </div>
       </div>
+      
+      {/* Toast Notification */}
+      {toast && <Toast {...toast} onClose={() => setToast(null)} />}
     </div>
   );
 }
