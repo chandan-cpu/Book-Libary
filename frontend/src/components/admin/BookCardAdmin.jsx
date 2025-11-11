@@ -53,13 +53,13 @@ export default function BookCardAdmin({ book, onEdit, onDelete }) {
         <div className="flex gap-2 mt-4">
           <button
             onClick={() => onEdit(book)}
-            className="flex-1 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center gap-1"
+            className="flex-1 cursor-pointer px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center gap-1"
           >
             <Edit2 className="w-4 h-4" /> Edit
           </button>
           <button
-            onClick={() => onDelete(book.id)}
-            className="flex-1 px-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg flex items-center justify-center gap-1"
+            onClick={() => onDelete(book._id)}
+            className="flex-1 cursor-pointer px-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg flex items-center justify-center gap-1"
           >
             <Trash2 className="w-4 h-4" /> Delete
           </button>

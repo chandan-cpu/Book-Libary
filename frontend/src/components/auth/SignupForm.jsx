@@ -35,7 +35,7 @@ export default function SignupForm() {
       />
 
       {/* Signup Container */}
-      <div className="relative flex flex-col md:flex-row items-center justify-between bg-white/60 backdrop-blur-2xl shadow-2xl rounded-2xl overflow-hidden w-full max-w-5xl z-10 border border-white/40">
+      <div className="relative flex flex-col md:flex-row items-center justify-between backdrop-blur-2xl shadow-2xl rounded-2xl overflow-hidden w-full max-w-5xl z-10 border border-white/40">
         {/* Signup Form with Scroll */}
         <div className="w-full md:w-1/2 p-8 flex flex-col justify-center h-[80vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
           <h2 className="text-3xl font-semibold text-center mb-6 text-gray-800 mt-30">
@@ -46,7 +46,7 @@ export default function SignupForm() {
             {/* Name */}
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-600">Full Name</label>
-              <div className="flex items-center border border-gray-300 rounded-lg p-2 focus-within:ring-2 focus-within:ring-green-400">
+              <div className="flex items-center border-2 border-black rounded-lg p-2 bg-transparent focus-within:ring-2 focus-within:ring-green-400">
                 <User className="w-5 h-5 text-gray-400 mr-2" />
                 <input
                   type="text"
@@ -55,7 +55,7 @@ export default function SignupForm() {
                   onChange={handleChange}
                   placeholder="Enter your full name"
                   required
-                  className="w-full outline-none bg-transparent text-gray-700"
+                  className="w-full outline-none text-gray-700"
                 />
               </div>
             </div>
@@ -63,7 +63,7 @@ export default function SignupForm() {
             {/* Email */}
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-600">Email</label>
-              <div className="flex items-center border border-gray-300 rounded-lg p-2 focus-within:ring-2 focus-within:ring-green-400">
+              <div className="flex items-center border-2 border-black rounded-lg p-2 bg-transparent focus-within:ring-2 focus-within:ring-green-400">
                 <Mail className="w-5 h-5 text-gray-400 mr-2" />
                 <input
                   type="email"
@@ -72,7 +72,7 @@ export default function SignupForm() {
                   onChange={handleChange}
                   placeholder="Enter your email"
                   required
-                  className="w-full outline-none bg-transparent text-gray-700"
+                  className="w-full outline-none  text-gray-700"
                 />
               </div>
             </div>
@@ -80,7 +80,7 @@ export default function SignupForm() {
             {/* Phone Number */}
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-600">Phone Number</label>
-              <div className="flex items-center border border-gray-300 rounded-lg p-2 focus-within:ring-2 focus-within:ring-green-400">
+              <div className="flex items-center border-2 border-black rounded-lg p-2 bg-transparent focus-within:ring-2 focus-within:ring-green-400">
                 <Phone className="w-5 h-5 text-gray-400 mr-2" />
                 <input
                   type="number"
@@ -97,7 +97,7 @@ export default function SignupForm() {
             {/* Password */}
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-600">Password</label>
-              <div className="flex items-center border border-gray-300 rounded-lg p-2 focus-within:ring-2 focus-within:ring-green-400">
+              <div className="flex items-center border-2 border-black rounded-lg p-2 bg-transparent focus-within:ring-2 focus-within:ring-green-400">
                 <Lock className="w-5 h-5 text-gray-400 mr-2" />
                 <input
                   type={showPassword ? "text" : "password"}
@@ -121,7 +121,7 @@ export default function SignupForm() {
             {/* Role */}
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-600">Role</label>
-              <div className="flex items-center border border-gray-300 rounded-lg p-2">
+              <div className="flex items-center border-2 border-black rounded-lg p-2 bg-transparent">
                 <UserCircle className="w-5 h-5 text-gray-400 mr-2" />
                 <select
                   name="role"
@@ -144,7 +144,7 @@ export default function SignupForm() {
           </form>
 
           <p className="text-center text-sm text-gray-500 mt-4">
-            Already have an account? <a href="#" className="text-green-600 hover:underline">Login</a>
+            Already have an account? <button onClick={() => navigate("/login")} className="text-green-600 hover:underline">Login</button>
           </p>
         </div>
 

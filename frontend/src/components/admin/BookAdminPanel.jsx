@@ -33,7 +33,13 @@ export default function BookAdminPanel() {
 
   const handleDelete = (bookId) => {
     if (window.confirm("Are you sure you want to delete this book?")) {
-      setBooks((prev) => prev.filter((book) => book.id !== bookId));
+      api.delete(`books/delete-book/${bookId}`)
+        .then(() => {
+          setBooks((prev) => prev.filter((book) => book._id !== bookId));
+        })
+        .catch((error) => {
+          console.error("Error deleting book:", error);
+        });
     }
   };
 
@@ -106,6 +112,7 @@ export default function BookAdminPanel() {
             editingBook={editingBook}
             onClose={handleModalClose}
             onSave={handleSave}
+            fetchFunction={fetchBooksFromAPI}
           />
         )}
       </div>

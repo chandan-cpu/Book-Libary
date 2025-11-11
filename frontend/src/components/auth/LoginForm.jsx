@@ -21,7 +21,10 @@ export default function LoginForm({ onAuthSuccess, setCurrentPage }) {
     
     try {
       const res = await api.post('/auth/login', formData);
-      console.log(res.data.user.role);
+      console.log(res.data);
+      
+      // Only store token in localStorage (user data comes from cookie/API)
+      localStorage.setItem('token', res.data.token);
       
       if (typeof setCurrentPage === "function") setCurrentPage("home");
       if (typeof onAuthSuccess === "function") onAuthSuccess();
