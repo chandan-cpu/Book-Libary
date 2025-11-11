@@ -16,7 +16,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "*",
+    origin: "https://book-libary-frontend1.onrender.com",
     credentials: true, 
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   })
