@@ -16,7 +16,7 @@ const HomePage = ({ setCurrentPage }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12 text-gray-900">
           <h1 className="text-5xl font-bold mb-4">
-            Welcome back, {user?.name || 'Guest'}! 👋
+            Welcome back, {user?.name || 'Guest'}!
           </h1>
           <p className="text-xl text-gray-600">
             Your digital gateway to knowledge and imagination

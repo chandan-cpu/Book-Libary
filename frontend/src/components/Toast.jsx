@@ -9,7 +9,7 @@ const Toast = ({ message, type, onClose }) => {
 
   return (
     <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg text-white ${
-      type === "success" ? "" : "bg-red-500"
+      type === "success" ? "bg-green-800" : "bg-red-500"
     }`}>
       {type === "success" ? <Check size={20} /> : <X size={20} />}
       <span>{message}</span>
